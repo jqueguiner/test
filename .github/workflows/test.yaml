@@ -1,0 +1,29 @@
+name: Test File
+
+on:
+  push:
+    branches:
+      - main
+   
+jobs:
+  build:
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get specific changed files
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v29.0.3
+        with:
+          files: |
+            my-file.txt
+            test.txt
+            new.txt
+            test_directory
+            *.sh
+            *.png
+            !*.md
+            *.jpeg
+            **/migrate-*.sql
+          files_ignore: |
+            *.yml
